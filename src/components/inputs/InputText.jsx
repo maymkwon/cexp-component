@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { Wrap } from "./inputStyled";
 import cn from "classnames";
 import styled, { keyframes } from "styled-components";
 const onAutoFillStart = keyframes`
@@ -14,6 +13,12 @@ const Div = styled.div`
     /* padding-top: 20px; */
   }
   height: 56px;
+
+  &:hover {
+    .label:not(.hide):not(.disabled) {
+      color: #4d4d4d;
+    }
+  }
   .input_container {
     position: relative;
     display: flex;
@@ -43,6 +48,8 @@ const Div = styled.div`
     margin: 0;
     border: 0;
     padding: 0 10px;
+
+    &::placeholder,
     &:read-only {
       color: #b3b3b3;
     }
@@ -61,12 +68,7 @@ const Div = styled.div`
     font-size: 12px;
     pointer-events: all;
   }
-  &:hover {
-    /* .border {
-      height: 1px;
-      background-color: #4d4d4d;
-    } */
-  }
+
   .border {
     position: absolute;
     bottom: 0;
@@ -75,11 +77,11 @@ const Div = styled.div`
     width: 100%;
     height: 1px;
     background-color: #4d4d4d;
-    &.focus:not(.value) {
+    &.focus {
       height: 2px;
       background-color: #563eb3;
     }
-    &.value {
+    &.value:not(.focus):not(.readOnly) {
       background-color: #d9d9d9;
     }
     &.disabled {
@@ -99,6 +101,7 @@ class InputText extends Component {
     focus: false
   };
   handleAutoFill = e => {
+    if (!this.props.label) return;
     this.setState({
       hide: e.animationName === "onAutoFillStart"
     });
@@ -106,18 +109,24 @@ class InputText extends Component {
 
   render() {
     const { value, hide, focus } = this.state;
-    const { name, label, disabled, readOnly } = this.props;
+    const { name, label, disabled, readOnly, placeholder } = this.props;
     const hideLabel = hide || focus || value;
     return (
       <Div>
         <label className="input_container">
-          <span className={cn("label", { hide: hideLabel })}>{label}</span>
+          {label && (
+            <span className={cn("label", { hide: hideLabel, disabled })}>
+              {label}
+            </span>
+          )}
+
           <input
             className="basic-input"
             value={value}
             name={name}
             readOnly={readOnly}
             disabled={disabled}
+            placeholder={placeholder}
             autoComplete="off"
             onAnimationStart={this.handleAutoFill}
             onFocus={() => this.setState({ focus: true })}
@@ -134,5 +143,7 @@ class InputText extends Component {
 export default InputText;
 
 PropTypes.propTypes = {
-  name: PropTypes.string
+  name: PropTypes.string,
+  label: PropTypes.string,
+  placeholder: PropTypes.string
 };

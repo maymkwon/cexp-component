@@ -35,6 +35,13 @@ storiesOf("Inputs/Input", module).add("text", () => (
       direction="column"
       readOnly={true}
     />
+    <InputText
+      onChange={action("change")}
+      name="textfield1"
+      value=""
+      direction="column"
+      placeholder="Helper Text"
+    />
   </React.Fragment>
 ));
 storiesOf("Inputs/Input", module).add("Outline Suffix Text field", () => (
