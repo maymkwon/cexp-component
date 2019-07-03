@@ -1,0 +1,70 @@
+import React, { Component } from "react";
+import Checkbox from "./Checkbox";
+
+const items = ["One", "Two", "Three"];
+
+class CheckboxGroup extends Component {
+  constructor(props){
+    super(props)
+    this.state = {
+      isLoading: false,
+      checkedListAll: [],
+      ItemsChecked:false
+    };
+
+  }
+  componentDidMount = () => {
+    this.selectedCheckboxes = new Set();
+  };
+
+  toggleCheckbox = label => {
+    const { handleCheck } = this.props;
+    if (this.selectedCheckboxes.has(label)) {
+      this.selectedCheckboxes.delete(label);
+    } else {
+      this.selectedCheckboxes.add(label);
+    }
+    if (handleCheck) {
+      handleCheck(this.selectedCheckboxes);
+      console.log(this.selectedCheckboxes);
+    }
+  };
+
+  handleFormSubmit = formSubmitEvent => {
+    formSubmitEvent.preventDefault();
+
+    for (const checkbox of this.selectedCheckboxes) {
+      console.log(checkbox, "is selected.");
+    }
+  };
+
+  createCheckbox = label => (
+    <Checkbox
+      label={label}
+      handleCheckboxChange={this.toggleCheckbox}
+      key={label}
+    />
+  );
+
+  createCheckboxes = () => items.map(this.createCheckbox);
+
+  render() {
+    return (
+      <div className="container">
+        <div className="row">
+          <div className="col-sm-12">
+            <form onSubmit={this.handleFormSubmit}>
+              {this.createCheckboxes()}
+
+              <button className="btn btn-default" type="submit">
+                Save
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    );
+  }
+}
+
+export default CheckboxGroup;

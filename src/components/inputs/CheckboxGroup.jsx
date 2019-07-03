@@ -1,64 +1,68 @@
-import React from "react";
-import PropTypes from "prop-types";
+import React, { Component } from "react";
 import Checkbox from "./Checkbox";
+import styled from "styled-components";
 
+const GroupBox = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
 const checkboxes = [
   {
-    title: "check-box-1",
+    label: "check-box-1",
     value: "checkBox1-value"
   },
   {
-    title: "check-box-2",
+    label: "check-box-2",
     value: "checkBox2-value"
   },
   {
-    title: "check-box-3",
+    label: "check-box-3",
     value: "checkBox3-value"
   },
   {
-    title: "check-box-4",
+    label: "check-box-4",
     value: "checkBox4-value"
   }
 ];
-class CheckboxContainer extends React.Component {
+class CheckboxGroup extends Component {
   constructor(props) {
     super(props);
-
-    this.state = {
-      checkedItems: new Map()
-    };
-
-    this.handleChange = this.handleChange.bind(this);
+    this.selectedCheckboxes = new Set();
   }
 
-  handleChange(e) {
-    const { onChange } = this.props;
-    const item = e.target.name;
-    const isChecked = e.target.checked;
-    this.setState(
-      prevState => ({
-        checkedItems: prevState.checkedItems.set(item, isChecked)
-      }),
-      () => onChange(this.state.checkedItems)
-    );
-  }
+  toggleCheckbox = label => {
+    if (!this.props.onChange) return;
+    if (this.selectedCheckboxes.has(label)) {
+      this.selectedCheckboxes.delete(label);
+    } else {
+      this.selectedCheckboxes.add(label);
+    }
+    this.props.onChange(this.selectedCheckboxes);
+  };
+
+  handleFormSubmit = formSubmitEvent => {
+    formSubmitEvent.preventDefault();
+
+    for (const checkbox of this.selectedCheckboxes) {
+      console.log(checkbox, "is selected.");
+    }
+  };
+
+  createCheckbox = (option, index) => (
+    <Checkbox
+      id={`storycheckgroup-${index + 1}`}
+      label={option.label}
+      value={option.value}
+      handleCheckboxChange={this.toggleCheckbox}
+      key={option.label}
+    />
+  );
+
+  createCheckboxes = () => checkboxes.map(this.createCheckbox);
 
   render() {
-    return (
-      <React.Fragment>
-        {checkboxes.map(item => (
-          <label key={item.key}>
-            {item.title}
-            <Checkbox
-              name={item.title}
-              checked={this.state.checkedItems.get(item.title)}
-              onChange={this.handleChange}
-            />
-          </label>
-        ))}
-      </React.Fragment>
-    );
+    return <GroupBox>{this.createCheckboxes()}</GroupBox>;
   }
 }
 
-export default CheckboxContainer;
+export default CheckboxGroup;

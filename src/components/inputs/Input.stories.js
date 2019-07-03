@@ -1,32 +1,50 @@
 import React from "react";
 import InputText from "./InputText";
+import OutlineSufixText from "./OutlineSufixText";
 import CheckboxGroup from "./CheckboxGroup";
-import Checkbox from "./Checkbox";
+import Checkbox, { Checkbox1 } from "./Checkbox";
 import { storiesOf } from "@storybook/react";
 import { action } from "@storybook/addon-actions";
-
-storiesOf("Inputs|Text", module)
-  .add("row", () => (
+storiesOf("Inputs/Input", module).add("row", () => (
+  <React.Fragment>
     <InputText
       onChange={action("change")}
       name="textfield"
       label="기본라벨입니다."
     />
-  ))
-  .add("column", () => (
     <InputText
       onChange={action("change")}
-      name="textfield"
+      name="textfield1"
       label="기본라벨입니다."
       direction="column"
     />
-  ));
+  </React.Fragment>
+));
+storiesOf("Inputs/Input", module).add("Outline Suffix Text field", () => (
+  <React.Fragment>
+    <OutlineSufixText
+      onChange={action("change")}
+      name="textfield"
+      label="기본"
+      suffix="VELT"
+    />
+    <OutlineSufixText
+      onChange={action("change")}
+      name="textfield1"
+      label="DISABLED"
+      suffix="VELT"
+      disabled={true}
+    />
+  </React.Fragment>
+));
 
 storiesOf("Inputs|Checkbox", module)
   .add("check group", () => <CheckboxGroup onChange={action("check")} />)
-  .add("column", () => (
+  .add("check single", () => (
     <Checkbox
+      id="single"
       handleCheckboxChange={action("change1")}
       label="기본라벨입니다."
+      value={2}
     />
   ));

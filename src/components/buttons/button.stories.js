@@ -3,6 +3,7 @@ import ConfirmButtonA from "./ConfirmButtonA";
 import ConfirmButtonB from "./ConfirmButtonB";
 import SmallButton from "./SmallButton";
 import OutlineButton from "./OutlineButton";
+import ToggleButtonGroup from "./ToggleButtonGroup";
 import { TextButtonA, TextButtonB, TextButtonC } from "./TextButton";
 import { StoryBtnBox } from "../storyiesStyled";
 import { storiesOf } from "@storybook/react";
@@ -83,6 +84,7 @@ storiesOf("BUTTON|Types", module)
       <br /> */}
     </StoryBtnBox>
   ))
+
   .add("Text Button", () => (
     <StoryBtnBox>
       <h1>Text Button Type A</h1>
@@ -161,5 +163,19 @@ storiesOf("BUTTON|Types", module)
         color="white"
         disabled
       />
+    </StoryBtnBox>
+  ))
+  .add("toggle button group", () => (
+    <StoryBtnBox>
+      <h1>Toggle button group</h1>
+      <ToggleButtonGroup onClick={action("onClick-small")} />
+      <br />
+      <ToggleButtonGroup onClick={action("onClick-small")} disabled={true} />
+
+      {/* 
+      <br />
+      <hr />
+      <br />
+      <br /> */}
     </StoryBtnBox>
   ));
