@@ -6,7 +6,7 @@ import {
 } from "@storybook/react";
 // import backgrounds from "@storybook/addon-backgrounds";
 import { withA11y } from "@storybook/addon-a11y";
-import JSXAddon from "storybook-addon-jsx";
+import JSXAddon, { jsxDecorator } from "storybook-addon-jsx";
 addParameters({
   options: {
     panelPosition: "right"
@@ -18,7 +18,9 @@ addParameters({
   ]
 });
 addDecorator(withA11y);
-// addDecorator(jsxDecorator);
+setAddon(JSXAddon);
+addDecorator(jsxDecorator);
+
 const req = require.context("../src/components", true, /\.stories\.(js|jsx)$/);
 
 function loadStories() {

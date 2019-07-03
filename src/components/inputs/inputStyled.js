@@ -2,6 +2,7 @@ import styled, { css } from "styled-components";
 
 export const Wrap = styled.div`
   display: flex;
+  position: relative;
   label + .area-input {
     margin-left: 15px;
   }

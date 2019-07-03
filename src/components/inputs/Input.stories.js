@@ -5,7 +5,7 @@ import CheckboxGroup from "./CheckboxGroup";
 import Checkbox, { Checkbox1 } from "./Checkbox";
 import { storiesOf } from "@storybook/react";
 import { action } from "@storybook/addon-actions";
-storiesOf("Inputs/Input", module).add("row", () => (
+storiesOf("Inputs/Input", module).add("text", () => (
   <React.Fragment>
     <InputText
       onChange={action("change")}
@@ -16,7 +16,24 @@ storiesOf("Inputs/Input", module).add("row", () => (
       onChange={action("change")}
       name="textfield1"
       label="기본라벨입니다."
+      value="aa"
       direction="column"
+    />
+    <InputText
+      onChange={action("change")}
+      name="textfield1"
+      label="DISABLED"
+      value=""
+      direction="column"
+      disabled={true}
+    />
+    <InputText
+      onChange={action("change")}
+      name="textfield1"
+      label="READONLY"
+      value="readonly"
+      direction="column"
+      readOnly={true}
     />
   </React.Fragment>
 ));

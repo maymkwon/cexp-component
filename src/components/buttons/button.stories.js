@@ -14,9 +14,9 @@ storiesOf("BUTTON|Types", module)
   .add("Confirm Button", () => (
     <StoryBtnBox>
       <h1>460 x 36</h1>
-      <ConfirmButtonA onClick={action("onClick")} label="TYPE-A Purple" main />
-      <ConfirmButtonA onClick={action("onClick1")} label="TYPE-A Gray" />
-      <ConfirmButtonA onClick={action("onClick1")} label="DISABLED" disabled />
+      <ConfirmButtonA label="TYPE-A Purple" main />
+      <ConfirmButtonA label="TYPE-A Gray" />
+      <ConfirmButtonA label="DISABLED" disabled />
 
       <br />
       <br />
@@ -24,9 +24,9 @@ storiesOf("BUTTON|Types", module)
       <br />
 
       <h1>560 x 54</h1>
-      <ConfirmButtonB onClick={action("onClick1")} label="TYPE-B" />
+      <ConfirmButtonB label="TYPE-B" />
       <ConfirmButtonB
-        onClick={action("onClick1")}
+        // onClick={action("onClick1")}
         label="TYPE-B disabled"
         disabled
       />
@@ -35,18 +35,18 @@ storiesOf("BUTTON|Types", module)
   .add("Small Button", () => (
     <StoryBtnBox>
       <h1>90 x 28</h1>
-      <SmallButton onClick={action("onClick-small")} label="Small" />
+      <SmallButton label="Small" />
       <SmallButton
-        onClick={action("onClick-small1")}
+        // onClick={action("onClick-small1")}
         label="Small Button text size over"
       />
       <SmallButton
-        onClick={action("onClick-disabled")}
+        // onClick={action("onClick-disabled")}
         label="Small"
         disabled
       />
       <SmallButton
-        onClick={action("onClick-disabled1")}
+        // onClick={action("onClick-disabled1")}
         label="Small Button text size over"
         disabled
       />
@@ -58,21 +58,21 @@ storiesOf("BUTTON|Types", module)
       <br /> */}
     </StoryBtnBox>
   ))
-  .add("Outline Button", () => (
+  .addWithJSX("Outline Button", () => (
     <StoryBtnBox>
       <h1>Outline Button</h1>
-      <OutlineButton onClick={action("onClick-small")} label="Small" outline />
+      <OutlineButton label="Small" outline />
       <OutlineButton
-        onClick={action("onClick-small1")}
+        // onClick={action("onClick-small1")}
         label="Small Button text size over"
       />
       <OutlineButton
-        onClick={action("onClick-disabled")}
+        // onClick={action("onClick-disabled")}
         label="Small"
         disabled
       />
       <OutlineButton
-        onClick={action("onClick-disabled1")}
+        // onClick={action("onClick-disabled1")}
         label="Small Button text size over"
         disabled
       />
@@ -85,21 +85,21 @@ storiesOf("BUTTON|Types", module)
     </StoryBtnBox>
   ))
 
-  .add("Text Button", () => (
+  .addWithJSX("Text Button", () => (
     <StoryBtnBox>
       <h1>Text Button Type A</h1>
-      <TextButtonA onClick={action("onClick-small")} label="Small" />
+      <TextButtonA label="Small" />
       <TextButtonA
-        onClick={action("onClick-small1")}
+        // onClick={action("onClick-small1")}
         label="Small Button text size over"
       />
       <TextButtonA
-        onClick={action("onClick-disabled")}
+        // onClick={action("onClick-disabled")}
         label="Small"
         disabled
       />
       <TextButtonA
-        onClick={action("onClick-disabled1")}
+        // onClick={action("onClick-disabled1")}
         label="Small Button text size over"
         disabled
       />
@@ -110,18 +110,18 @@ storiesOf("BUTTON|Types", module)
       <br />
 
       <h1>Text Button Type B</h1>
-      <TextButtonB onClick={action("onClick-small")} label="Small" />
+      <TextButtonB label="Small" />
       <TextButtonB
-        onClick={action("onClick-small1")}
+        // onClick={action("onClick-small1")}
         label="Small Button text size over"
       />
       <TextButtonB
-        onClick={action("onClick-disabled")}
+        // onClick={action("onClick-disabled")}
         label="Small"
         disabled
       />
       <TextButtonB
-        onClick={action("onClick-disabled1")}
+        // onClick={action("onClick-disabled1")}
         label="Small Button text size over"
         disabled
       />
@@ -131,46 +131,24 @@ storiesOf("BUTTON|Types", module)
       <br />
 
       <h1>Text Button Type C</h1>
-      <TextButtonC onClick={action("onClick-small")} label="Text Button C" />
-      <TextButtonC
-        onClick={action("onClick-small")}
-        label="Text Button C"
-        disabled
-      />
+      <TextButtonC label="Text Button C" />
+      <TextButtonC label="Text Button C" disabled />
       <br />
       <br />
-      <TextButtonC
-        onClick={action("onClick-small")}
-        label="Text Button C"
-        color="gray"
-      />
-      <TextButtonC
-        onClick={action("onClick-small")}
-        label="Text Button C"
-        color="gray"
-        disabled
-      />
+      <TextButtonC label="Text Button C" color="gray" />
+      <TextButtonC label="Text Button C" color="gray" disabled />
       <br />
       <br />
-      <TextButtonC
-        onClick={action("onClick-small")}
-        label="Text Button C"
-        color="white"
-      />
-      <TextButtonC
-        onClick={action("onClick-small")}
-        label="Text Button C"
-        color="white"
-        disabled
-      />
+      <TextButtonC label="Text Button C" color="white" />
+      <TextButtonC label="Text Button C" color="white" disabled />
     </StoryBtnBox>
   ))
-  .add("toggle button group", () => (
+  .addWithJSX("toggle button group", () => (
     <StoryBtnBox>
       <h1>Toggle button group</h1>
-      <ToggleButtonGroup onClick={action("onClick-small")} />
+      <ToggleButtonGroup />
       <br />
-      <ToggleButtonGroup onClick={action("onClick-small")} disabled={true} />
+      <ToggleButtonGroup disabled={true} />
 
       {/* 
       <br />
