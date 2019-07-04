@@ -26,6 +26,7 @@ class SelectBox extends Component {
     const { defaultOption } = this.props;
     return (
       <div>
+        a
         <Select
           value={defaultOption}
           options={scaryAnimals}
