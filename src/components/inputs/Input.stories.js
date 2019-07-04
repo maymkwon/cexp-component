@@ -17,14 +17,12 @@ storiesOf("Inputs/Input", module).add("text", () => (
       name="textfield1"
       label="기본라벨입니다."
       value="aa"
-      direction="column"
     />
     <InputText
       onChange={action("change")}
       name="textfield1"
       label="DISABLED"
       value=""
-      direction="column"
       disabled={true}
     />
     <InputText
@@ -32,15 +30,30 @@ storiesOf("Inputs/Input", module).add("text", () => (
       name="textfield1"
       label="READONLY"
       value="readonly"
-      direction="column"
       readOnly={true}
     />
     <InputText
       onChange={action("change")}
       name="textfield1"
       value=""
-      direction="column"
-      placeholder="Helper Text"
+      defaultLabel="defaultLabel"
+      placeholder="No label input"
+    />
+    <InputText
+      onChange={action("change")}
+      name="textfield1"
+      value=""
+      label="password"
+      type="password"
+      // placeholder="Helper Text"
+    />
+    <InputText
+      onChange={action("change")}
+      name="textfield12"
+      value=""
+      defaultLabel="search"
+      placeholder="Search Text"
+      searchAble={true}
     />
   </React.Fragment>
 ));
