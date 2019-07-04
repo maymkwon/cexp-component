@@ -28,7 +28,7 @@ class OutlineSufixText extends Component {
   }
 
   render() {
-    const { name, label, direction, suffix, disabled } = this.props;
+    const { name, direction, suffix, disabled } = this.props;
     const { value } = this.state;
     return (
       <OutlineWrap direction={direction}>

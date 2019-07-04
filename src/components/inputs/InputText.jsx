@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import cn from "classnames";
-import styled, { keyframes } from "styled-components";
+import styled, { keyframes, css } from "styled-components";
 const onAutoFillStart = keyframes`
   from{}
 `;
@@ -12,6 +12,12 @@ const Div = styled.div`
   & + & {
     /* padding-top: 20px; */
   }
+  ${({ dropdown }) =>
+    dropdown &&
+    css`
+      pointer-events: none;
+    `}
+
   height: 56px;
   position: relative;
   &:hover {
@@ -144,6 +150,15 @@ class InputText extends Component {
     this.setState({ value: "" });
   };
 
+  componentDidUpdate(prevProps, prevState) {
+    const { value, dropdown } = this.props;
+    if (dropdown && prevProps.value !== value) {
+      this.setState({
+        value
+      });
+    }
+  }
+
   render() {
     const { value, hide, focus, type, isMask } = this.state;
     const {
@@ -152,11 +167,12 @@ class InputText extends Component {
       disabled,
       readOnly,
       placeholder,
-      defaultLabel
+      defaultLabel,
+      dropdown
     } = this.props;
     const hideLabel = hide || focus || value;
     return (
-      <Div>
+      <Div dropdown={dropdown}>
         <label className="input_container">
           {label && (
             <span className={cn("label", { hide: hideLabel, disabled })}>
@@ -177,7 +193,10 @@ class InputText extends Component {
             onAnimationStart={this.handleAutoFill}
             onFocus={() => this.setState({ focus: true })}
             onBlur={() => this.setState({ focus: false })}
-            onChange={e => this.setState({ value: e.target.value })}
+            onChange={e => {
+              if (dropdown) return;
+              this.setState({ value: e.target.value });
+            }}
           />
           <div className={cn("border", { focus, value, disabled, readOnly })} />
         </label>

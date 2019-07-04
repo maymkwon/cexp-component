@@ -2,7 +2,9 @@ import React from "react";
 import InputText from "./InputText";
 import OutlineSufixText from "./OutlineSufixText";
 import CheckboxGroup from "./CheckboxGroup";
-import Checkbox, { Checkbox1 } from "./Checkbox";
+import Checkbox from "./Checkbox";
+import SearchSelectBox from "./SearchSelectBox";
+import SelectBox from "./SelectBox";
 import { storiesOf } from "@storybook/react";
 import { action } from "@storybook/addon-actions";
 storiesOf("Inputs/Input", module).add("text", () => (
@@ -85,3 +87,9 @@ storiesOf("Inputs|Checkbox", module)
       value={2}
     />
   ));
+storiesOf("Inputs|Dropdown", module).add("with-search", () => (
+  <SearchSelectBox onChange={action("check")} />
+));
+storiesOf("Inputs|Dropdown", module).add("default-dropdown", () => (
+  <SelectBox onChange={action("check")} />
+));
